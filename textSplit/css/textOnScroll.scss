@@ -1,0 +1,125 @@
+@font-face {
+    font-family: 'CormorantInfant-Regular';
+    src: url(../assets/fnt/CormorantInfant-Regular.ttf);
+}
+@font-face {
+    font-family: 'Emberly-Regular';
+    src: url(../assets/fnt/Emberly-Regular.ttf);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.red {
+    color: red;
+}
+.bgWhite {
+    background-color: #fff;
+}
+
+
+body {
+    font-family: 'CormorantInfant-Regular';
+    height: 100vh;
+    background-color: #222;
+    color: #f1f1f1;
+
+    width: 80%;
+    margin: 0 auto;
+    section {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        h1 {
+            font-size: 5vw;
+            font-weight: 100;
+            letter-spacing: 0.8cqmax;
+            margin-bottom: 2rem;
+        }
+        img {
+            margin-bottom: 4rem;
+        }
+        #textArea {
+            position: relative;
+            // padding: 3rem 0 0;
+            width: 100%;
+            height: 98px;
+            overflow-y: hidden;
+            #splitHaut {
+                height: 49px;
+                width: 100%;
+                overflow-y: hidden;
+                position: absolute;
+                top: 0;
+                animation: splitToTop 1000ms 2000ms forwards ease;
+                p {
+                    text-align: center;
+                    font-size: 7vw;
+                    letter-spacing: 3px;
+                    filter: blur(0);
+                }
+            }
+            #splitBas {
+                height: 49px;
+                width: 100%;
+                overflow-y: hidden;
+                position: absolute;
+                top: 50%;
+                animation: splitToBottom 1000ms 2000ms forwards ease;
+                p {
+                    text-align: center;
+                    font-size: 7vw;
+                    letter-spacing: 3px;
+                    transform: translateY(-50%);
+                    filter: blur(0);
+                }
+            }
+        }
+        #TestLine {
+            font-size: 4vw;
+            letter-spacing: 3px;
+            // color: #fff;
+        }
+        #TestLine2 {
+            font-size: 4vw;
+            letter-spacing: 3px;
+        }
+        #TestLine3 {
+            font-size: clamp(4.4px, 4vw, 5rem);
+            letter-spacing: 3px;
+            color: #fff;
+            // background-color: #ff9500;
+            padding: 0 2rem;
+            // border-radius: 10px;
+            // border: 1px solid blue;
+        }
+        .divTestRed {
+            border: 1px solid red;
+        }
+        .divTestGreen {
+            border: 1px solid green;
+        }
+    }
+    
+}
+
+@keyframes splitToTop {
+    to {
+        transform: translateY(-110%);
+        filter: blur(5px);
+        opacity: 0;
+    }
+}
+
+@keyframes splitToBottom {
+    to {
+        transform: translateY(110%);
+        filter: blur(5px);
+        opacity: 0;
+    }
+}
