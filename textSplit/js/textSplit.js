@@ -24,24 +24,20 @@ const getCssProperty = (idList, id, arr) => {
     }
 };
 
-const strRandom = (o) => {
-    let a = 10,
-        b = 'abcdefghijklmnopqrstuvwxyz',
-        c = '',
-        d = 0,
-        e = '' + b;
-    if (o) {
+const strRandom = (opt) => {
+    let a = 10, b = 'abcdefghijklmnopqrstuvwxyz', c = '', d = 0, e = '' + b;
+    if (opt) {
         if (o.startsWithLowerCase) {
             c = b[Math.floor(Math.random() * b.length)];
             d = 1;
         }
-        if (o.length) {
+        if (opt.length) {
             a = o.length;
         }
-        if (o.includeUpperCase) {
+        if (opt.includeUpperCase) {
             e += b.toUpperCase();
         }
-        if (o.includeNumbers) {
+        if (opt.includeNumbers) {
             e += '1234567890';
         }
     }
@@ -53,6 +49,12 @@ const strRandom = (o) => {
 
 window.onload = () => {
     const texts = document.querySelectorAll('p[data-split]');
+    const styleAnim = document.createElement('style');
+    styleAnim.innerHTML=`
+    @keyframes splitToTop {to {transform: translateY(-110%);filter: blur(5px);opacity: 0;}}
+    @keyframes splitToBottom {to {transform: translateY(110%);filter: blur(5px);opacity: 0;}}
+    `;
+    document.getElementsByTagName('head')[0].appendChild(styleAnim);
 
     texts.forEach((t, idx) => {
         const bBox = t.getBoundingClientRect();
@@ -78,8 +80,6 @@ window.onload = () => {
         const tParent = t.parentNode;
         // recherche du 'grand Frère'
         const tBrother = t.previousElementSibling;
-        // console.log('Parent : ',tParent);
-        // console.log('Brother : ', tBrother);
 
         let lineCut = attributs.cut ? attributs.cut : 0.5;
 
@@ -96,16 +96,15 @@ window.onload = () => {
         divHaut.style.width = bBox.width + 'px';
         divHaut.style.height = bBox.height * lineCut + 'px';
         divHaut.style.overflowY = 'hidden';
-        divHaut.id = strRandom({
-            includeUpperCase: true,
-            includeNumbers: true,
-            length: 5,
-            startsWithLowerCase: true
-          });
+        // divHaut.id = strRandom({
+        //     includeUpperCase: true,
+        //     includeNumbers: true,
+        //     length: 5,
+        //     startsWithLowerCase: true
+        //   });
 
         const divBas = document.createElement('div');
-        // divBas.classList.add('divTestGreen');
-        // tParent.appendChild(divBas);
+
         divHaut.insertAdjacentElement('afterend', divBas);
         divBas.style.position = 'absolute';
         divBas.style.top = bBox.bottom - (bBox.height * (1 - lineCut)) + 'px';
@@ -113,12 +112,12 @@ window.onload = () => {
         divBas.style.width = bBox.width + 'px';
         divBas.style.height = bBox.height * (1 - lineCut) + 'px';
         divBas.style.overflowY = 'hidden';
-        divBas.id = strRandom({
-            includeUpperCase: true,
-            includeNumbers: true,
-            length: 5,
-            startsWithLowerCase: true
-          });
+        // divBas.id = strRandom({
+        //     includeUpperCase: true,
+        //     includeNumbers: true,
+        //     length: 5,
+        //     startsWithLowerCase: true
+        //   });
 
 
         t.style.visibility = "hidden";
@@ -153,14 +152,14 @@ window.onload = () => {
         });
 
         // TODO :
-        // Checker que c'est un <p>
+        // * Checker que c'est un <p>,
         // * Stocker le innerText,
-        // * Stocker les styles (typo, size, spacing...)
-        // * Si une class est appliquée, la mettre sur les div créées.
+        // * Stocker les styles (typo, size, spacing...),
+        // * Si une class est appliquée, la mettre sur les div créées,
         // * Stocker la BoundingBox,
         // * Stocker le parent, supprimer l'élément, Créer 2 div de 50% de la hauteur l'une sous l'autre, y placer un <p> avec le innerTxt,
-        // * Décaler le texte dans la div du bas de 50% vers le haut.
-        // * appliquer les animations
+        // * Décaler le texte dans la div du bas de 50% vers le haut,
+        // * intégrer et appliquer les animations,
         // * Supprimer les divs en fin d'animation
     });
 }

@@ -2,10 +2,6 @@
     font-family: 'CormorantInfant-Regular';
     src: url(../assets/fnt/CormorantInfant-Regular.ttf);
 }
-@font-face {
-    font-family: 'Emberly-Regular';
-    src: url(../assets/fnt/Emberly-Regular.ttf);
-}
 * {
     margin: 0;
     padding: 0;
@@ -46,7 +42,6 @@ body {
         }
         #textArea {
             position: relative;
-            // padding: 3rem 0 0;
             width: 100%;
             height: 98px;
             overflow-y: hidden;
@@ -106,20 +101,4 @@ body {
         }
     }
     
-}
-
-@keyframes splitToTop {
-    to {
-        transform: translateY(-110%);
-        filter: blur(5px);
-        opacity: 0;
-    }
-}
-
-@keyframes splitToBottom {
-    to {
-        transform: translateY(110%);
-        filter: blur(5px);
-        opacity: 0;
-    }
 }
