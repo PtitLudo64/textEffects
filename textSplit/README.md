@@ -1,5 +1,7 @@
 # Split Text effect
 
+![Screen capture](../textSplitC.gif)
+
 usage :
 
 `code`
